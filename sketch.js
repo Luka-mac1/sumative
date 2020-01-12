@@ -6,11 +6,14 @@
 let s;
 let scl = 20;
 let food;
-
+var yum;
+var  j=0;
+var k=0;
+var h=2;
 function setup() {
   createCanvas(600, 600);
   s = new Snake();
-  frameRate(10);
+  frameRate(10+k);
   pickLocation();
 }
 
@@ -19,6 +22,8 @@ function pickLocation() {
   let rows = floor(height / scl);
   food = createVector(floor(random(cols)), floor(random(rows)));
   food.mult(scl);
+  yum = createVector(floor(random(cols)), floor(random(rows)));
+  yum.mult(scl);
 }
 
 function mousePressed() {
@@ -27,14 +32,36 @@ function mousePressed() {
 
 function draw() {
   background(51);
+  for (var i=0 ; i<=h;i++)
+  {
   if (s.eat(food)) {
     pickLocation();
+    j++;
+    s.update();
+  }
+  if (s.munch(yum)&&j%5===0) {
+    pickLocation();
+    j++;
+    k+=3;
+  
+  
+  }
   }
   s.death();
   s.update();
   s.show();
   fill(255, 0, 100);
   rect(food.x, food.y, scl, scl);
+  
+  noFill(0,0,0);
+  noStroke(); // remove border
+  rect(yum.x,yum.y,scl,scl);
+  if (j%5===0)
+  {
+  fill(0,0,255);
+  rect(yum.x,yum.y,scl,scl);
+    frameRate(10+k);
+  }
 }
 
 function keyPressed() {
