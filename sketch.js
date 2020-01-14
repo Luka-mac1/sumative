@@ -10,6 +10,7 @@ var yum;
 var  j=0;
 var k=0;
 var h=2;
+var fillin=false;
 function setup() {
   createCanvas(600, 600);
   s = new Snake();
@@ -26,40 +27,48 @@ function pickLocation() {
   yum.mult(scl);
 }
 
-function mousePressed() {
-  s.total++;
-}
+//function mousePressed() {
+ // s.total++;
+//}
 
 function draw() {
   background(51);
 
+  // did we hit food
   if (s.eat(food)) {
     pickLocation();
     j++;
-    s.update();
+  }
   
-  if (s.munch(yum)&&j%5===0) {
+  // did we hit yum
+  if (s.munch(yum)) {
     pickLocation();
     j++;
-    k+=3;
-  
-  
+    fillin=true; // indicate to snake there are holse in body to fill 
+    k+=2;   // increase speed when we hit yum 
+    frameRate(10+k);
+    if(k>=6)
+    {
+      k=0;
+    }
   }
-  }
+
   s.death();
-  s.update();
+  s.update(fillin);
+  fillin=false;  // no need to fill body till next hit
   s.show();
   fill(255, 0, 100);
   rect(food.x, food.y, scl, scl);
   
+  // invisible yum at first
   noFill(0,0,0);
   noStroke(); // remove border
   rect(yum.x,yum.y,scl,scl);
+  // at start or every 5 hits to food show the yum
   if (j%5===0)
   {
-  fill(0,0,255);
-  rect(yum.x,yum.y,scl,scl);
-    frameRate(10+k);
+    fill(0,0,255);
+    rect(yum.x,yum.y,scl,scl);
   }
 }
 
