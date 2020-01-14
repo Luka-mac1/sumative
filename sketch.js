@@ -32,13 +32,12 @@ function mousePressed() {
 
 function draw() {
   background(51);
-  for (var i=0 ; i<=h;i++)
-  {
+
   if (s.eat(food)) {
     pickLocation();
     j++;
     s.update();
-  }
+  
   if (s.munch(yum)&&j%5===0) {
     pickLocation();
     j++;
