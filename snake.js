@@ -14,7 +14,7 @@ function Snake() {
   this.tail = [];
   this.eat = function(pos) {
     let d = dist(this.x, this.y, pos.x, pos.y);
-    if (d < this.total) {
+    if (d < 1) {
       this.total = this.total + 1 + h;
       j++;
       count++;
@@ -25,7 +25,7 @@ function Snake() {
   };
 this.munch = function(pos) {
     let d = dist(this.x, this.y, pos.x, pos.y);
-    if (d < this.total &&count%5===0) {
+    if (d < 1 &&count%5===0) {
      this.total++;
      h++;
       j=0;
@@ -65,14 +65,14 @@ this.munch = function(pos) {
     for (let t = 0; t<=h; t++)
     {   
      
-      this.tail[this.total - 1 - t] = createVector(this.x + t*(this.xspeed )  * scl, this.y -t* (this.yspeed )  * scl);
-    
-    }
-    this.x = this.x + (this.xspeed )  * scl ;
-    this.y = this.y + (this.yspeed )  * scl ;
-
-    this.x = constrain(this.x, 0, width - scl);
+      this.tail[this.total - 1 - t]  = createVector(this.x,this.y);
+      this.x = this.x + (this.xspeed )  * scl ;
+      this.y = this.y + (this.yspeed )  * scl ;  
+      this.x = constrain(this.x, 0, width - scl);
     this.y = constrain(this.y, 0, height - scl);
+    }
+    
+    
   };
 
   this.show = function() {
@@ -83,4 +83,3 @@ this.munch = function(pos) {
     rect(this.x, this.y, scl, scl);
   };
 }
-
