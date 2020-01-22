@@ -4,17 +4,19 @@
 // Code for: https://youtu.be/AaGK-fj-BAM
 
 let s;
-let scl = 20;
+let scl = 10;
 let food;
 var yum;
 var  j=0;
 var k=0;
 var h=2;
+var SPEED=10;
+var HITS=5;
 var fillin=false;
 function setup() {
   createCanvas(600, 600);
   s = new Snake();
-  frameRate(10+k);
+  frameRate(SPEED+k);
   pickLocation();
 }
 
@@ -46,7 +48,7 @@ function draw() {
     j++;
     fillin=true; // indicate to snake there are holse in body to fill 
     k+=2;   // increase speed when we hit yum 
-    frameRate(10+k);
+    frameRate(SPEED+k);
     if(k>=6)
     {
       k=0;
@@ -65,7 +67,7 @@ function draw() {
   noStroke(); // remove border
   rect(yum.x,yum.y,scl,scl);
   // at start or every 5 hits to food show the yum
-  if (j%5===0)
+  if (j%HITS===0)
   {
     fill(0,0,255);
     rect(yum.x,yum.y,scl,scl);
