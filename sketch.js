@@ -4,7 +4,7 @@
 // Code for: https://youtu.be/AaGK-fj-BAM
 
 let s;
-let scl = 5;
+let scl = 20;
 let food;
 var yum;
 var  j=0;
