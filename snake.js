@@ -71,21 +71,16 @@ this.death = function() {
 
 
     // if we had a hit extra bits according to new length 
-   /* console.log("total is " + this.total + " length of tail is " + this.tail.length + " and h is " + this.hityum)
-    */
-    if (fillin == true) {
-    for (let t = 0; t<=this.hityum; t++)
-    {  
-      // since we added head to a new possition fill in the holes
-      tmpx = this.x - (this.xspeed + t)  * scl ;
-      tmpy = this.y - (this.yspeed + t)  * scl ;
+    if (fillin === true) {
+       for (let t = 0; t<=this.hityum; t++)
+       {  
+         // since we added head to a new possition fill in the holes
+         tmpx = this.x - (this.xspeed + t)  * scl ;
+         tmpy = this.y - (this.yspeed + t)  * scl ;
 
-      this.tail[this.tail.length -  1 - t ] = createVector(tmpx,tmpy);
-      
-   /* console.log("tail at location " + (this.tail.length -  1 - t) + " is " +  this.tail[this.tail.length -  1 - t ]  );
-*/
-    }
-  }
+         this.tail[this.tail.length -  1 - t ] = createVector(tmpx,tmpy);
+       }
+     }
   };
 
   this.show = function() {
