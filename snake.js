@@ -11,7 +11,9 @@ function Snake() {
   this.tail = [];
   this.hit = 0;   // counts hits to yum or food
   this.hityum = 0;   // counts hits to yum
-  this.eat = function(pos) {
+  
+  
+this.eat = function(pos) {
     let d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
       this.total++;
